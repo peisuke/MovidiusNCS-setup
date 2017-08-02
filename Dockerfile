@@ -73,10 +73,11 @@ ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 
 RUN mkdir /opt/movidius
+
 WORKDIR /opt/movidius
 
-RUN wget -c --quiet https://ncsforum.movidius.com/uploads/editor/ho/up2ggsopcmuy.tgz
-RUN tar xvf up2ggsopcmuy.tgz && \
+RUN wget -c --quiet https://ncsforum.movidius.com/uploads/editor/ho/up2ggsopcmuy.tgz && \
+    tar xvf up2ggsopcmuy.tgz && \
     tar xvf MvNC_API-1.07.06.tgz 
 
 RUN cd ncapi/redist && dpkg -i * && cd ../../ && rm -rf ncapi
@@ -94,9 +95,10 @@ USER ubuntu
 
 WORKDIR "/home/ubuntu"
 
-RUN wget -c --quiet https://ncsforum.movidius.com/uploads/editor/ho/up2ggsopcmuy.tgz
-RUN tar xvf up2ggsopcmuy.tgz && \
+RUN wget -c --quiet https://ncsforum.movidius.com/uploads/editor/ho/up2ggsopcmuy.tgz && \
+    tar xvf up2ggsopcmuy.tgz && \
     tar xvf MvNC_API-1.07.06.tgz && \
-    tar xvf MvNC_Toolkit-1.07.06.tgz
+    tar xvf MvNC_Toolkit-1.07.06.tgz && \
+    rm *.tgz
 
 CMD ["/bin/bash"]
