@@ -78,8 +78,9 @@ WORKDIR /opt/movidius
 
 RUN wget -c --quiet https://ncsforum.movidius.com/uploads/editor/ho/up2ggsopcmuy.tgz && \
     tar xvf up2ggsopcmuy.tgz && \
-    tar xvf MvNC_API-1.07.06.tgz 
-
+    tar xvf MvNC_API-1.07.06.tgz && \
+    rm *.tgz
+    
 RUN cd ncapi/redist && dpkg -i * && cd ../../ && rm -rf ncapi
 
 RUN groupadd -g 1000 ubuntu && \
